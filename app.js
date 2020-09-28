@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express"),
   expressSanitizer = require("express-sanitizer"),
   app = express(),
-  port = 5000,
+  port = process.env.PORT || 5000,
   bodyParser = require("body-parser"),
   axios = require("axios"),
   mongoose = require("mongoose"),

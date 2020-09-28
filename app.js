@@ -10,13 +10,9 @@ const express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
   methodOverride = require("method-override"),
-  // Campground = require('./models/campground'),
-  // Comment = require('./models/comment'),
   User = require("./models/user");
 
 // const seedDB = require('./seed');
-
-// Comment
 
 // Routes
 const campgroundRoutes = require("./routes/campgrounds"),
@@ -24,15 +20,12 @@ const campgroundRoutes = require("./routes/campgrounds"),
   authRoutes = require("./routes/index");
 
 mongoose
-  .connect(
-    "mongodb+srv://chaitu:muralivani539@cluster0.rzwfb.mongodb.net/yelp_camp?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    }
-  )
+  .connect(process.env.DATABASEURL || "mongodb://localhost:27017/yelp_camp", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  })
   .then(() => console.log("Connected to DB!"))
   .catch((error) => console.log("Error:", error.message));
 

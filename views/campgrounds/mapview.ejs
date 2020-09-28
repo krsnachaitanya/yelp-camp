@@ -61,8 +61,7 @@
       var latitude = event.data.latitude;
       var longitude = event.data.longitude;
       var placename = event.data.placename;
-      mapboxgl.accessToken =
-        'pk.eyJ1Ijoia3JzbmFjaGFpdGFueWEiLCJhIjoiY2tmNTdmZ3J2MGs4dzJ0bWR6cnlwdHE1aSJ9.B65vmZZy-_-2DmUlVCesAQ';
+      mapboxgl.accessToken = '<%= process.env.MAPBOXACT %>';
       var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',

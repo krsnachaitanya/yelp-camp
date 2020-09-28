@@ -1,0 +1,53 @@
+.delete-form {
+  display: inline;
+}
+
+.navbar .navbar-nav {
+  flex-direction: row;
+}
+
+.nav-item .nav-link {
+  margin: 0 15px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.profile-picture-item {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.like__icon {
+  width: 20px;
+  height: 20px;
+}
+
+table tr > .table__header {
+  border-top: 0;
+}
+
+/* Mapbox */
+.mapview__container,
+.map_disabled {
+  height: 400px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.map_disabled {
+  background-color: lightgray;
+  padding: 20px;
+}
+
+.map_disabled > p {
+  font-size: 24px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.error_icon {
+  width: 100px;
+  margin: 0 auto;
+  padding: 20px 0;
+  opacity: 50%;
+}

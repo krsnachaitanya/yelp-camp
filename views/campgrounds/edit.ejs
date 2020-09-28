@@ -1,0 +1,66 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+  <h1 class="text-center">Edit: <%= campground.name %> </h1>
+
+  <div class="col-md-6 mx-auto">
+    <!-- Posts data to campground page -->
+    <form action="/campgrounds/<%= campground.slug %>?_method=PUT" method="post">
+      <div class="form-group mt-4">
+        <label for="name">Name</label>
+        <input class="form-control" type="text" name="campground[name]" placeholder="Name"
+          value="<%= campground.name %>" required>
+      </div>
+      <div class="form-group">
+        <label for="cost">Price</label>
+        <input class="form-control" type="number" name="campground[price]" placeholder="Price"
+          value="<%= campground.price %>" min="1" step="1" required>
+      </div>
+      <div class="form-group">
+        <label for="image">Image Url</label>
+        <input class="form-control" type="text" name="campground[image]" placeholder="Image URL"
+          value="<%= campground.image %>" required>
+      </div>
+      <iframe class="mapview__container" src="/campgrounds/mapform" name="mapform" frameborder="0"></iframe>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input class="form-control" type="text" name="campground[location]" id="location"
+          placeholder="Enter a location in the map" value="<%= campground.location %>" required>
+      </div>
+      <div class="form-group">
+        <label for="latitude">Latitude</label>
+        <input class="form-control" type="text" name="campground[latitude]" id="latitude"
+          placeholder="Enter a location in the map" value="<%= campground.lat %>" required>
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude</label>
+        <input class="form-control" type="text" name="campground[longitude]" id="longitude"
+          placeholder="Enter a location in the map" value="<%= campground.lng %>" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" type="text" name="campground[description]" placeholder="Description" rows="6"
+          required><%= campground.description %></textarea>
+      </div>
+      <div class="form-group text-center">
+        <a class="btn btn-lg btn-danger m-3" href="/campgrounds/<%= campground.slug %>">Cancel</a>
+        <button class="btn btn-lg btn-primary m-3" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('message', function (event) {
+    var location = document.getElementById('location');
+    var latitude = document.getElementById('latitude');
+    var longitude = document.getElementById('longitude');
+    if (Boolean(event.data.placename)) {
+      location.value = event.data.placename;
+      latitude.value = event.data.latitude;
+      longitude.value = event.data.longitude;
+    }
+  });
+</script>
+
+<%- include('../partials/footer') %>

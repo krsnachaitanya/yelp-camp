@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Set a point after Geocoder result</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .popup>.mapboxgl-popup-content {
+      border-radius: 15px;
+      padding: 10px;
+    }
+
+    .mapboxgl-popup-close-button {
+      display: none;
+    }
+
+    .popup>div>p {
+      text-align: center;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .mapboxgl-ctrl-attrib.mapboxgl-compact,
+    .mapboxgl-ctrl-attrib-inner,
+    a.mapboxgl-ctrl-logo,
+    .mapbox-improve-map {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Map View Page</h1>
+  <div id="map"></div>
+
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js">
+  </script>
+  <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+    type="text/css" />
+  <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+  <script>
+    window.addEventListener('message', function (event) {
+      var latitude = event.data.latitude;
+      var longitude = event.data.longitude;
+      var placename = event.data.placename;
+      mapboxgl.accessToken =
+        'pk.eyJ1Ijoia3JzbmFjaGFpdGFueWEiLCJhIjoiY2tmNTdmZ3J2MGs4dzJ0bWR6cnlwdHE1aSJ9.B65vmZZy-_-2DmUlVCesAQ';
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [latitude, longitude],
+        zoom: 12
+      });
+      var marker = new mapboxgl.Marker()
+        .setLngLat([latitude, longitude])
+        .addTo(map);
+      var popup = new mapboxgl.Popup({
+          closeOnClick: false,
+          offset: 30,
+          className: 'popup'
+        })
+        .setLngLat([latitude, longitude])
+        .setHTML(`<p>${placename}</p>`)
+        .addTo(map);
+    });
+  </script>
+
+</body>
+
+</html>

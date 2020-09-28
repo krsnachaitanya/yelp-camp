@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+  <h1 class="text-center">Edit Comment</h1>
+
+  <div class="col-md-6 mx-auto">
+    <!-- Posts data to comments in campgrounds page -->
+    <form action="/campgrounds/<%= campground_slug %>/comments/<%= comment._id %>?_method=PUT" method="post">
+      <div class="form-group mt-4">
+        <textarea class="form-control" name="comment[text]" rows="5" placeholder="Add a comment"
+          required><%= comment.text %> </textarea>
+      </div>
+      <div class="form-group">
+        <div class="form-group text-center">
+          <a class="btn btn-lg btn-danger m-3" href="/campgrounds/<%= campground_slug %>">Cancel</a>
+          <button class="btn btn-lg btn-primary m-3" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

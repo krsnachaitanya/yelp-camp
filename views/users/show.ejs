@@ -1,0 +1,34 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+  <div class="row">
+    <div class="co-md-4">
+      <% if (currentUser && user._id.equals(currentUser._id)) { %>
+      <a class="mt-2 btn btn-warning btn-sm float-right" href="/user/<%= user._id %>/edit">Edit</a>
+      <% } %>
+      <h1 class=""><%= user.username %> </h1>
+      <div class="card">
+        <img class="card-img-top profile-picture-item" src="<%= user.avatar %>"
+          alt="<%= user.username %> Profile Image">
+        <div class="card-body">
+          <p class="card-text">Email: <a href="mailto:<%= user.email %>"><%= user.email %></a></p>
+        </div>
+      </div>
+      <% if (currentUser && user._id.equals(currentUser._id)) { %>
+      <a href="/forgot" class="mt-2 mb-4 btn btn-sm btn-info">Reset Password</a>
+      <% } %>
+    </div>
+  </div>
+  <div class="co1-md-8">
+    <h3><%= user.username %>'s Campgrounds </h3>
+    <ul>
+      <% campgrounds.forEach((campground) => { %>
+      <li>
+        <a href="/campgrounds/<%= campground.slug %>"><%= campground.name %></a>
+      </li>
+      <% }) %>
+    </ul>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

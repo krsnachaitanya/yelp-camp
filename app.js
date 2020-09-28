@@ -16,6 +16,8 @@ const express = require("express"),
 
 // const seedDB = require('./seed');
 
+// Comment
+
 // Routes
 const campgroundRoutes = require("./routes/campgrounds"),
   commentRoutes = require("./routes/comments"),

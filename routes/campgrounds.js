@@ -32,7 +32,7 @@ router.get("/", (req, res) => {
         res.render("campgrounds/index", {
           campgrounds: searchedCampgrounds,
           searchTerm: req.query.search,
-          page: "campgrounds",
+          pages: "campgrounds",
         });
       }
     });
